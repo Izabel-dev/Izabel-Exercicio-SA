@@ -1,0 +1,22 @@
+# Byte-code files
+*.pyc
+__pycache__/
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Virtual environment
+venv/
+
+# Database
+db.sqlite3
+
+# Media files
+media/
+
+# Static files (collected)
+static_root/
+
+# Environment variables
+.env

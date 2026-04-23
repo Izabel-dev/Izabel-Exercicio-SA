@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Izabellaestilo{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3 shadow-sm">
+    <div class="container-fluid py-5 text-center">
+        <h1 class="display-5 fw-bold text-pink" style="color: #d63384;">Bem-vinda à Izabellaestilo!</h1>
+        <p class="col-md-12 fs-4">Sua loja de moda e estilo em um só lugar. Gerencie seus produtos, categorias e pedidos de forma simples e eficiente.</p>
+        <hr class="my-4">
+        {% if user.is_authenticated %}
+            <p>Você está logado como <strong>{{ user.username }}</strong>. Explore as seções do sistema:</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{% url 'produto_list' %}" class="btn btn-primary btn-lg px-4 gap-3">Ver Produtos</a>
+                <a href="{% url 'pedido_list' %}" class="btn btn-outline-secondary btn-lg px-4">Ver Pedidos</a>
+            </div>
+        {% else %}
+            <p>Faça login ou cadastre-se para acessar as funcionalidades completas.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 gap-3">Login</a>
+                <a href="{% url 'cadastro' %}" class="btn btn-outline-secondary btn-lg px-4">Cadastre-se</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient text-white p-3 rounded mb-3 d-inline-flex align-items-center justify-content-center">
+            <i class="bi bi-bag-check"></i>
+        </div>
+        <h2>Produtos</h2>
+        <p>Gerencie todo o seu estoque de roupas e acessórios. Adicione novos itens, atualize preços e controle a quantidade disponível.</p>
+    </div>
+    <div class="feature col">
+        <div class="feature-icon bg-success bg-gradient text-white p-3 rounded mb-3 d-inline-flex align-items-center justify-content-center">
+            <i class="bi bi-tags"></i>
+        </div>
+        <h2>Categorias</h2>
+        <p>Organize seus produtos por categorias para facilitar a navegação e o gerenciamento do seu catálogo de moda.</p>
+    </div>
+    <div class="feature col">
+        <div class="feature-icon bg-warning bg-gradient text-white p-3 rounded mb-3 d-inline-flex align-items-center justify-content-center">
+            <i class="bi bi-cart-plus"></i>
+        </div>
+        <h2>Pedidos</h2>
+        <p>Acompanhe todos os pedidos realizados, altere o status de entrega e mantenha o histórico de vendas sempre atualizado.</p>
+    </div>
+</div>
+{% endblock %}

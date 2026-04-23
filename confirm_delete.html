@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Produtos - Izabellaestilo{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Lista de Produtos</h2>
+    <a href="{% url 'produto_create' %}" class="btn btn-primary">Novo Produto</a>
+</div>
+
+<div class="card shadow">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.categoria.nome }}</td>
+                    <td>R$ {{ produto.preco }}</td>
+                    <td>{{ produto.estoque }}</td>
+                    <td>
+                        <a href="{% url 'produto_update' produto.pk %}" class="btn btn-sm btn-outline-warning">Editar</a>
+                        <a href="{% url 'produto_delete' produto.pk %}" class="btn btn-sm btn-outline-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Nenhum produto cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
